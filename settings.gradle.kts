@@ -11,7 +11,7 @@ pluginManagement {
         gradlePluginPortal()
     }
     plugins {
-        id("com.google.devtools.ksp") version "2.3.0-1.0.31"
+        id("com.google.devtools.ksp") version "2.2.21-2.0.4"
         id("com.google.dagger.hilt.android") version "2.57.2"
     }
 }
