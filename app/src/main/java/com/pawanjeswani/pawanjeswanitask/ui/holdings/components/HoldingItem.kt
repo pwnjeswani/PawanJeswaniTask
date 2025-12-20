@@ -11,10 +11,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.ui.theme.LossRed
 import com.pawanjeswani.pawanjeswanitask.ui.theme.PawanJeswaniTaskTheme
@@ -28,7 +30,7 @@ fun HoldingItem(
     holding: Holding,
     modifier: Modifier = Modifier
 ) {
-    val currencyFormatter = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN"))
     val pnlColor = if (holding.pnl >= 0) ProfitGreen else LossRed
 
     Column(
@@ -51,7 +53,7 @@ fun HoldingItem(
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "NET QTY: ",
+                        text = stringResource(R.string.label_net_qty),
                         style = MaterialTheme.typography.bodySmall,
                         fontSize = 10.sp,
                         color = greyLabel
@@ -70,7 +72,7 @@ fun HoldingItem(
                 horizontalAlignment = Alignment.End) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "LTP: ",
+                        text = stringResource(R.string.label_ltp),
                         style = MaterialTheme.typography.bodySmall,
                         fontSize = 10.sp,
                         color = greyLabel
@@ -85,7 +87,7 @@ fun HoldingItem(
 
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "P&L: ",
+                        text = stringResource(R.string.label_pnl),
                         style = MaterialTheme.typography.bodySmall,
                         fontSize = 10.sp,
                         color = greyLabel

@@ -21,10 +21,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 import com.pawanjeswani.pawanjeswanitask.ui.holdings.components.HoldingItem
@@ -33,8 +35,8 @@ import com.pawanjeswani.pawanjeswanitask.ui.theme.PawanJeswaniTaskTheme
 
 @Composable
 fun HoldingsScreen(
+    modifier: Modifier = Modifier,
     viewModel: HoldingsViewModel = hiltViewModel(),
-    modifier: Modifier = Modifier
 ) {
     val uiState by viewModel.uiState.collectAsState()
     
@@ -119,13 +121,13 @@ private fun EmptyContent() {
             verticalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "No Holdings Found",
+                text = stringResource(R.string.msg_no_holdings),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Your portfolio is empty",
+                text = stringResource(R.string.msg_portfolio_empty),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -165,7 +167,7 @@ private fun ErrorContent(
             modifier = Modifier.padding(32.dp)
         ) {
             Text(
-                text = "Oops! Something went wrong",
+                text = stringResource(R.string.msg_error_generic),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.error
             )
@@ -178,7 +180,7 @@ private fun ErrorContent(
             )
             Spacer(modifier = Modifier.height(24.dp))
             Button(onClick = onRetry) {
-                Text("Retry")
+                Text(stringResource(R.string.action_retry))
             }
         }
     }

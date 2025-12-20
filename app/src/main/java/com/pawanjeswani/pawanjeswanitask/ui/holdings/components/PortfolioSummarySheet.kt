@@ -27,9 +27,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 import com.pawanjeswani.pawanjeswanitask.ui.theme.LossRed
 import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
@@ -42,7 +44,7 @@ fun PortfolioSummarySheet(
     modifier: Modifier = Modifier
 ) {
     var isExpanded by remember { mutableStateOf(false) }
-    val currencyFormatter = NumberFormat.getCurrencyInstance(Locale("en", "IN"))
+    val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN"))
 
     val totalPnlColor = if (summary.totalPnl >= 0) ProfitGreen else LossRed
     val todayPnlColor = if (summary.todayPnl >= 0) ProfitGreen else LossRed
@@ -73,14 +75,14 @@ fun PortfolioSummarySheet(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "Profit & Loss*",
+                            text = stringResource(R.string.label_profit_and_loss),
                             style = MaterialTheme.typography.bodyMedium,
                             fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowUp,
-                            contentDescription = "Expand",
+                            contentDescription = stringResource(R.string.desc_expand),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
@@ -97,7 +99,7 @@ fun PortfolioSummarySheet(
                 
                 // Current Value
                 SummaryRow(
-                    label = "Current Value",
+                    label = stringResource(R.string.label_current_value),
                     value = currencyFormatter.format(summary.currentValue)
                 )
 
@@ -105,7 +107,7 @@ fun PortfolioSummarySheet(
 
                 // Total Investment
                 SummaryRow(
-                    label = "Total Investment",
+                    label = stringResource(R.string.label_total_investment),
                     value = currencyFormatter.format(summary.totalInvestment)
                 )
 
@@ -113,7 +115,7 @@ fun PortfolioSummarySheet(
 
                 // Today's Profit & Loss
                 SummaryRow(
-                    label = "Today's Profit & Loss",
+                    label = stringResource(R.string.label_todays_profit_and_loss),
                     value = currencyFormatter.format(summary.todayPnl),
                     valueColor = todayPnlColor
                 )
@@ -135,14 +137,14 @@ fun PortfolioSummarySheet(
                 ) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
-                            text = "Profit & Loss*",
+                            text = stringResource(R.string.label_profit_and_loss),
                             style = MaterialTheme.typography.bodyMedium,
                             fontSize = 14.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                         Icon(
                             imageVector = Icons.Default.KeyboardArrowDown,
-                            contentDescription = "Collapse",
+                            contentDescription = stringResource(R.string.desc_collapse),
                             tint = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }

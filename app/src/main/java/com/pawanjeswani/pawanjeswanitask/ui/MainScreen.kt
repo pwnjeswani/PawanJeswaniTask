@@ -3,10 +3,14 @@ package com.pawanjeswani.pawanjeswanitask.ui
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Watch
 import androidx.compose.material.icons.outlined.AccountBalanceWallet
+import androidx.compose.material.icons.outlined.MonetizationOn
+import androidx.compose.material.icons.outlined.Rocket
 import androidx.compose.material.icons.outlined.TrendingUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -36,11 +40,11 @@ data class BottomNavItem(
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navItems = listOf(
-        BottomNavItem("Watchlists", Icons.Default.List),
+        BottomNavItem("Watchlists", Icons.Default.Watch),
         BottomNavItem("Orders", Icons.Default.ShoppingCart),
         BottomNavItem("Portfolio", Icons.Default.Star),
         BottomNavItem("Funds", Icons.Outlined.AccountBalanceWallet),
-        BottomNavItem("Invest", Icons.Outlined.TrendingUp)
+        BottomNavItem("Invest", Icons.Outlined.Rocket)
     )
     
     // Start with Portfolio tab (index 2 - middle)

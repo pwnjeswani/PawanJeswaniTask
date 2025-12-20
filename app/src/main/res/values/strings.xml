@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">PawanJeswaniTask</string>
+
+    <!-- Navigation Titles -->
+    <string name="title_positions">Positions</string>
+    <string name="title_watchlists">Watchlist</string>
+    <string name="title_orders">Orders</string>
+    <string name="title_invest">Invest</string>
+    <string name="title_funds">Funds</string>
+
+    <!-- Portfolio Summary -->
+    <string name="label_profit_and_loss">Profit &amp; Loss*</string>
+    <string name="label_current_value">Current Value</string>
+    <string name="label_total_investment">Total Investment</string>
+    <string name="label_todays_profit_and_loss">Today\'s Profit &amp; Loss</string>
+    <string name="desc_expand">Expand</string>
+    <string name="desc_collapse">Collapse</string>
+
+    <!-- Holding Item -->
+    <string name="label_net_qty">NET QTY: </string>
+    <string name="label_ltp">LTP: </string>
+    <string name="label_pnl">P&amp;L: </string>
+
+    <!-- Holdings Screen -->
+    <string name="msg_no_holdings">No Holdings Found</string>
+    <string name="msg_portfolio_empty">Your portfolio is empty</string>
+    <string name="msg_error_generic">Oops! Something went wrong</string>
+    <string name="action_retry">Retry</string>
 </resources>
