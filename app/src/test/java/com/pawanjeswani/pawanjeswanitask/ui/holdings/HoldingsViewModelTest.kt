@@ -1,5 +1,6 @@
 package com.pawanjeswani.pawanjeswanitask.ui.holdings
 
+import android.content.Context
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 import com.pawanjeswani.pawanjeswanitask.domain.usecase.CalculatePortfolioSummaryUseCase
@@ -26,6 +27,7 @@ class HoldingsViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
     private lateinit var getHoldingsUseCase: GetHoldingsUseCase
     private lateinit var calculatePortfolioSummaryUseCase: CalculatePortfolioSummaryUseCase
+    private lateinit var context: Context
     private lateinit var viewModel: HoldingsViewModel
     
     private val sampleHoldings = listOf(
@@ -57,6 +59,7 @@ class HoldingsViewModelTest {
         Dispatchers.setMain(testDispatcher)
         getHoldingsUseCase = mockk()
         calculatePortfolioSummaryUseCase = mockk()
+        context = mockk(relaxed = true)
     }
     
     @After
@@ -69,7 +72,7 @@ class HoldingsViewModelTest {
         coEvery { getHoldingsUseCase() } returns Result.success(sampleHoldings)
         every { calculatePortfolioSummaryUseCase(any()) } returns sampleSummary
         
-        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase)
+        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase, context)
         
         // Before advancing, should be loading
         assertTrue(viewModel.uiState.value is HoldingsUiState.Loading)
@@ -80,7 +83,7 @@ class HoldingsViewModelTest {
         coEvery { getHoldingsUseCase() } returns Result.success(sampleHoldings)
         every { calculatePortfolioSummaryUseCase(any()) } returns sampleSummary
         
-        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase)
+        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase, context)
         advanceUntilIdle()
         
         val state = viewModel.uiState.value
@@ -94,7 +97,7 @@ class HoldingsViewModelTest {
         val errorMessage = "Network error"
         coEvery { getHoldingsUseCase() } returns Result.failure(Exception(errorMessage))
         
-        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase)
+        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase, context)
         advanceUntilIdle()
         
         val state = viewModel.uiState.value
@@ -107,7 +110,7 @@ class HoldingsViewModelTest {
         // First call fails
         coEvery { getHoldingsUseCase() } returns Result.failure(Exception("Error"))
         
-        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase)
+        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase, context)
         advanceUntilIdle()
         
         assertTrue(viewModel.uiState.value is HoldingsUiState.Error)
@@ -127,7 +130,7 @@ class HoldingsViewModelTest {
         coEvery { getHoldingsUseCase() } returns Result.success(emptyList())
         every { calculatePortfolioSummaryUseCase(any()) } returns PortfolioSummary(0.0, 0.0, 0.0, 0.0)
         
-        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase)
+        viewModel = HoldingsViewModel(getHoldingsUseCase, calculatePortfolioSummaryUseCase, context)
         advanceUntilIdle()
         
         val state = viewModel.uiState.value

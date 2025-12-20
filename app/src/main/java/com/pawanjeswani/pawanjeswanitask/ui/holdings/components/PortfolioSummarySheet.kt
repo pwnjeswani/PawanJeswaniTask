@@ -44,7 +44,7 @@ fun PortfolioSummarySheet(
     modifier: Modifier = Modifier
 ) {
     var isExpanded by remember { mutableStateOf(false) }
-    val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN"))
+    val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) }
 
     val totalPnlColor = if (summary.totalPnl >= 0) ProfitGreen else LossRed
     val todayPnlColor = if (summary.todayPnl >= 0) ProfitGreen else LossRed

@@ -3,15 +3,12 @@ package com.pawanjeswani.pawanjeswanitask.ui
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBalanceWallet
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Watch
 import androidx.compose.material.icons.outlined.AccountBalanceWallet
-import androidx.compose.material.icons.outlined.MonetizationOn
 import androidx.compose.material.icons.outlined.Rocket
-import androidx.compose.material.icons.outlined.TrendingUp
+import androidx.compose.material.icons.outlined.ShoppingBag
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -26,6 +23,8 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
+import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.ui.navigation.FundsScreen
 import com.pawanjeswani.pawanjeswanitask.ui.navigation.InvestScreen
 import com.pawanjeswani.pawanjeswanitask.ui.navigation.OrdersScreen
@@ -40,11 +39,11 @@ data class BottomNavItem(
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navItems = listOf(
-        BottomNavItem("Watchlists", Icons.Default.Watch),
-        BottomNavItem("Orders", Icons.Default.ShoppingCart),
-        BottomNavItem("Portfolio", Icons.Default.Star),
-        BottomNavItem("Funds", Icons.Outlined.AccountBalanceWallet),
-        BottomNavItem("Invest", Icons.Outlined.Rocket)
+        BottomNavItem(stringResource(R.string.title_watchlist), Icons.Default.Watch),
+        BottomNavItem(stringResource(R.string.title_orders), Icons.Default.ShoppingCart),
+        BottomNavItem(stringResource(R.string.title_portfolio), Icons.Outlined.ShoppingBag),
+        BottomNavItem(stringResource(R.string.title_funds), Icons.Outlined.AccountBalanceWallet),
+        BottomNavItem(stringResource(R.string.title_invest), Icons.Outlined.Rocket)
     )
     
     // Start with Portfolio tab (index 2 - middle)

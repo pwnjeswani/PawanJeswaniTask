@@ -1,7 +1,10 @@
 package com.pawanjeswani.pawanjeswanitask.ui.holdings
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import androidx.lifecycle.viewModelScope
+import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.usecase.CalculatePortfolioSummaryUseCase
 import com.pawanjeswani.pawanjeswanitask.domain.usecase.GetHoldingsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HoldingsViewModel @Inject constructor(
     private val getHoldingsUseCase: GetHoldingsUseCase,
-    private val calculatePortfolioSummaryUseCase: CalculatePortfolioSummaryUseCase
+    private val calculatePortfolioSummaryUseCase: CalculatePortfolioSummaryUseCase,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow<HoldingsUiState>(HoldingsUiState.Loading)
@@ -38,7 +42,7 @@ class HoldingsViewModel @Inject constructor(
                 },
                 onFailure = { throwable ->
                     _uiState.value = HoldingsUiState.Error(
-                        message = throwable.message ?: "An unexpected error occurred"
+                        message = throwable.message ?: context.getString(R.string.error_generic)
                     )
                 }
             )

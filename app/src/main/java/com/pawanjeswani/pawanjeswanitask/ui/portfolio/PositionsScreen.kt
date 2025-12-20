@@ -17,7 +17,7 @@ fun PositionsScreen() {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = stringResource(R.string.title_positions),
+            text = stringResource(R.string.title_portfolio),
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
         )

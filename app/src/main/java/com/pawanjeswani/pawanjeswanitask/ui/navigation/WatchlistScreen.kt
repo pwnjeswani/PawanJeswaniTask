@@ -16,7 +16,7 @@ fun WatchlistScreen(modifier: Modifier = Modifier) {
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = stringResource(R.string.title_watchlists),
+            text = stringResource(R.string.title_watchlist),
             modifier = Modifier.align(Alignment.Center)
         )
     }

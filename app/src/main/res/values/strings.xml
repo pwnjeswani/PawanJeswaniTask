@@ -2,8 +2,8 @@
     <string name="app_name">PawanJeswaniTask</string>
 
     <!-- Navigation Titles -->
-    <string name="title_positions">Positions</string>
-    <string name="title_watchlists">Watchlist</string>
+    <string name="title_portfolio">Portfolio</string>
+    <string name="title_watchlist">Watchlist</string>
     <string name="title_orders">Orders</string>
     <string name="title_invest">Invest</string>
     <string name="title_funds">Funds</string>
@@ -26,4 +26,5 @@
     <string name="msg_portfolio_empty">Your portfolio is empty</string>
     <string name="msg_error_generic">Oops! Something went wrong</string>
     <string name="action_retry">Retry</string>
+    <string name="error_generic">An unexpected error occurred</string>
 </resources>
