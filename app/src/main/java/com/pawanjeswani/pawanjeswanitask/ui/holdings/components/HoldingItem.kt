@@ -24,13 +24,14 @@ import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
 import com.pawanjeswani.pawanjeswanitask.ui.theme.greyLabel
 import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatCurrency
 
+// Composable displaying a single holding item with symbol, quantity, LTP, and P&L
 @Composable
 fun HoldingItem(
     holding: Holding,
     modifier: Modifier = Modifier
 ) {
     // val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) } // Optimization: Use shared formatter
-    val pnlColor = if (holding.pnl >= 0) ProfitGreen else LossRed
+    val pnlColor = if (holding.pnl >= 0) ProfitGreen else LossRed // Green for profit, red for loss
     
     Column(
         modifier = modifier

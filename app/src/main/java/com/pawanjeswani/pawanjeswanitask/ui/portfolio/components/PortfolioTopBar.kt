@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.pawanjeswani.pawanjeswanitask.ui.theme.SecondaryColor
 
+// Custom top app bar for portfolio screen with profile, sort, and search actions
 @Composable
 fun PortfolioTopBar(
     modifier: Modifier = Modifier,

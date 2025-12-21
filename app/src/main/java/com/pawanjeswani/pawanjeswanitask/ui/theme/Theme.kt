@@ -10,18 +10,21 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+// Dark theme color scheme configuration
 private val DarkColorScheme = darkColorScheme(
     primary = SecondaryColor,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
+// Light theme color scheme configuration
 private val LightColorScheme = lightColorScheme(
     primary = SecondaryColor,
     secondary = PurpleGrey40,
     tertiary = Pink40
 )
 
+// App theme composable supporting dynamic colors and dark/light modes
 @Composable
 fun PawanJeswaniTaskTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

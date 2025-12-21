@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.pawanjeswani.pawanjeswanitask.R
 
+// Placeholder screen for funds tab (to be implemented)
 @Composable
 fun FundsScreen(modifier: Modifier = Modifier) {
     Box(

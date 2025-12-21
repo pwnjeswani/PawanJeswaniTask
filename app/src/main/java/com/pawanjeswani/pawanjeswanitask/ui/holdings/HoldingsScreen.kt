@@ -32,6 +32,7 @@ import com.pawanjeswani.pawanjeswanitask.ui.holdings.components.HoldingItem
 import com.pawanjeswani.pawanjeswanitask.ui.holdings.components.PortfolioSummarySheet
 import com.pawanjeswani.pawanjeswanitask.ui.theme.PawanJeswaniTaskTheme
 
+// Main holdings screen composable with ViewModel integration
 @Composable
 fun HoldingsScreen(
     modifier: Modifier = Modifier,
@@ -46,6 +47,7 @@ fun HoldingsScreen(
     )
 }
 
+// Internal content composable handling different UI states
 @Composable
 internal fun HoldingsContent(
     uiState: HoldingsUiState,
@@ -99,6 +101,7 @@ internal fun HoldingsContent(
     }
 }
 
+// Loading state with centered progress indicator
 @Composable
 private fun LoadingContent() {
     Box(
@@ -111,6 +114,7 @@ private fun LoadingContent() {
     }
 }
 
+// Empty state when no holdings are available
 @Composable
 private fun EmptyContent() {
     Box(
@@ -136,6 +140,7 @@ private fun EmptyContent() {
     }
 }
 
+// Scrollable list displaying all holdings
 @Composable
 private fun HoldingsList(
     holdings: List<Holding>
@@ -152,6 +157,7 @@ private fun HoldingsList(
     }
 }
 
+// Error state with message and retry button
 @Composable
 private fun ErrorContent(
     message: UiText,

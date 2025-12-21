@@ -14,12 +14,14 @@ import javax.inject.Inject
 
 import com.pawanjeswani.pawanjeswanitask.util.UiText
 
+// ViewModel managing holdings data and UI state for the holdings screen
 @HiltViewModel
 class HoldingsViewModel @Inject constructor(
     private val getHoldingsUseCase: GetHoldingsUseCase,
     private val calculatePortfolioSummaryUseCase: CalculatePortfolioSummaryUseCase
 ) : ViewModel() {
     
+    // StateFlow holding the current UI state (Loading, Success, or Error)
     private val _uiState = MutableStateFlow<HoldingsUiState>(HoldingsUiState.Loading)
     val uiState: StateFlow<HoldingsUiState> = _uiState.asStateFlow()
     
@@ -27,6 +29,7 @@ class HoldingsViewModel @Inject constructor(
         loadHoldings()
     }
     
+    // Loads holdings data and calculates portfolio summary
     fun loadHoldings() {
         viewModelScope.launch {
             _uiState.value = HoldingsUiState.Loading
@@ -51,6 +54,7 @@ class HoldingsViewModel @Inject constructor(
         }
     }
     
+    // Retries loading holdings after an error
     fun retry() {
         loadHoldings()
     }

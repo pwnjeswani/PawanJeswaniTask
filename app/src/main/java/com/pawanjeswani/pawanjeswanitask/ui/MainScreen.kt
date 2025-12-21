@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Watch
 import androidx.compose.material.icons.outlined.AccountBalanceWallet
 import androidx.compose.material.icons.outlined.Rocket
@@ -31,11 +30,13 @@ import com.pawanjeswani.pawanjeswanitask.ui.navigation.OrdersScreen
 import com.pawanjeswani.pawanjeswanitask.ui.navigation.WatchlistScreen
 import com.pawanjeswani.pawanjeswanitask.ui.portfolio.PortfolioScreen
 
+// Data class representing bottom navigation item with title and icon
 data class BottomNavItem(
     val title: String,
     val icon: ImageVector
 )
 
+// Main screen with bottom navigation bar and content switching
 @Composable
 fun MainScreen(modifier: Modifier = Modifier) {
     val navItems = listOf(
@@ -52,6 +53,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
         bottomBar = {
+            // Bottom navigation bar with five tabs
             NavigationBar(
                 containerColor = MaterialTheme.colorScheme.surface,
                 contentColor = MaterialTheme.colorScheme.onSurface
@@ -79,6 +81,7 @@ fun MainScreen(modifier: Modifier = Modifier) {
             }
         }
     ) { paddingValues ->
+        // Content area showing selected screen based on navigation index
         when (selectedIndex) {
             0 -> WatchlistScreen(modifier = Modifier.padding(paddingValues))
             1 -> OrdersScreen(modifier = Modifier.padding(paddingValues))

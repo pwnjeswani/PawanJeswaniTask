@@ -4,6 +4,7 @@ import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 import javax.inject.Inject
 
+// Use case that calculates aggregated portfolio summary from list of holdings
 class CalculatePortfolioSummaryUseCase @Inject constructor() {
     
     operator fun invoke(holdings: List<Holding>): PortfolioSummary {

@@ -4,6 +4,7 @@ import android.util.Log
 import com.pawanjeswani.pawanjeswanitask.data.remote.dto.HoldingDto
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 
+// Converts HoldingDto to domain Holding model, returns null if required fields are missing
 fun HoldingDto.toHolding(): Holding? {
     return if (symbol != null && 
         quantity != null && 

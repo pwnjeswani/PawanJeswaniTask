@@ -38,12 +38,13 @@ import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
 import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatCurrency
 import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatPercentage
 
+// Expandable bottom sheet displaying portfolio summary with P&L details
 @Composable
 fun PortfolioSummarySheet(
     summary: PortfolioSummary,
     modifier: Modifier = Modifier
 ) {
-    var isExpanded by remember { mutableStateOf(false) }
+    var isExpanded by remember { mutableStateOf(false) } // Tracks expansion state of the sheet
     // val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) } // Optimization: Shared formatter used
 
     val totalPnlColor = if (summary.totalPnl >= 0) ProfitGreen else LossRed
@@ -161,6 +162,7 @@ fun PortfolioSummarySheet(
     }
 }
 
+// Reusable row component for displaying summary label-value pairs
 @Composable
 private fun SummaryRow(
     label: String,

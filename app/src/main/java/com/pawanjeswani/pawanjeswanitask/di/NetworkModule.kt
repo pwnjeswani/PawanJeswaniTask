@@ -13,12 +13,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+// Hilt module providing network-related dependencies
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     
     @Provides
     @Singleton
+    // Provides Moshi instance for JSON parsing
     fun provideMoshi(): Moshi {
         return Moshi.Builder()
             .build()
@@ -26,6 +28,7 @@ object NetworkModule {
     
     @Provides
     @Singleton
+    // Provides OkHttpClient with logging and timeout configurations
     fun provideOkHttpClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -41,6 +44,7 @@ object NetworkModule {
     
     @Provides
     @Singleton
+    // Provides Retrofit instance for network calls
     fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .baseUrl(HoldingsApiService.BASE_URL)
@@ -51,6 +55,7 @@ object NetworkModule {
     
     @Provides
     @Singleton
+    // Provides the holdings API service implementation
     fun provideHoldingsApiService(retrofit: Retrofit): HoldingsApiService {
         return retrofit.create(HoldingsApiService::class.java)
     }

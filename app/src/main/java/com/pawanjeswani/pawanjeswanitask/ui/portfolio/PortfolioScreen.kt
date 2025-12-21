@@ -16,11 +16,13 @@ import androidx.compose.ui.text.font.FontWeight
 import com.pawanjeswani.pawanjeswanitask.ui.holdings.HoldingsScreen
 import kotlinx.coroutines.launch
 
+// Enum defining the available tabs in the portfolio section
 enum class PortfolioTab(val title: String) {
     POSITIONS("POSITIONS"),
     HOLDINGS("HOLDINGS")
 }
 
+// Main screen composable for the portfolio feature
 @Composable
 fun PortfolioScreen(modifier: Modifier = Modifier) {
     val tabs = PortfolioTab.entries
@@ -36,6 +38,7 @@ fun PortfolioScreen(modifier: Modifier = Modifier) {
             onProfileClick = { /* TODO: Implement profile callback */ }
         )
 
+        // Tab row for switching between positions and holdings
         PrimaryTabRow(
             selectedTabIndex = pagerState.currentPage,
             modifier = Modifier.fillMaxWidth(),
@@ -61,6 +64,7 @@ fun PortfolioScreen(modifier: Modifier = Modifier) {
             }
         }
         
+        // Pager to display content based on selected tab
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.fillMaxSize()
