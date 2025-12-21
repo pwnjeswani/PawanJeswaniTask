@@ -1,6 +1,7 @@
 package com.pawanjeswani.pawanjeswanitask.domain.model
 
 data class Holding(
+    val id: String = java.util.UUID.randomUUID().toString(),
     val symbol: String,
     val quantity: Int,
     val ltp: Double,

@@ -3,6 +3,8 @@ package com.pawanjeswani.pawanjeswanitask.ui.holdings
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 
+import com.pawanjeswani.pawanjeswanitask.util.UiText
+
 sealed class HoldingsUiState {
     data object Loading : HoldingsUiState()
     
@@ -12,6 +14,6 @@ sealed class HoldingsUiState {
     ) : HoldingsUiState()
     
     data class Error(
-        val message: String
+        val message: UiText
     ) : HoldingsUiState()
 }

@@ -3,16 +3,12 @@ package com.pawanjeswani.pawanjeswanitask.ui.holdings.components
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,15 +22,14 @@ import com.pawanjeswani.pawanjeswanitask.ui.theme.LossRed
 import com.pawanjeswani.pawanjeswanitask.ui.theme.PawanJeswaniTaskTheme
 import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
 import com.pawanjeswani.pawanjeswanitask.ui.theme.greyLabel
-import java.text.NumberFormat
-import java.util.Locale
+import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatCurrency
 
 @Composable
 fun HoldingItem(
     holding: Holding,
     modifier: Modifier = Modifier
 ) {
-    val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) }
+    // val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) } // Optimization: Use shared formatter
     val pnlColor = if (holding.pnl >= 0) ProfitGreen else LossRed
     
     Column(
@@ -44,18 +39,24 @@ fun HoldingItem(
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             // Left Column: Symbol and Quantity
             Column(
-                modifier = Modifier.fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Text(
                     text = holding.symbol,
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Medium,
                     fontSize = 14.sp,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow =androidx.compose.ui.text.style.TextOverflow.Ellipsis
                 )
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
@@ -65,7 +66,7 @@ fun HoldingItem(
                         color = greyLabel
                     )
                     Text(
-                        text = "${holding.quantity}",
+                        text = " ${holding.quantity}",
                         style = MaterialTheme.typography.bodySmall,
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurface
@@ -75,9 +76,9 @@ fun HoldingItem(
 
             // Right Column: LTP and P&L
             Column(
-                modifier = Modifier.fillMaxHeight(),
-                verticalArrangement = Arrangement.spacedBy(20.dp),
-                horizontalAlignment = Alignment.End) {
+                horizontalAlignment = Alignment.End,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
                         text = stringResource(R.string.label_ltp),
@@ -86,7 +87,7 @@ fun HoldingItem(
                         color = greyLabel
                     )
                     Text(
-                        text = currencyFormatter.format(holding.ltp),
+                        text = " ${formatCurrency(holding.ltp)}",
                         style = MaterialTheme.typography.bodyMedium,
                         fontSize = 14.sp,
                         color = MaterialTheme.colorScheme.onSurface
@@ -101,7 +102,7 @@ fun HoldingItem(
                         color = greyLabel
                     )
                     Text(
-                        text = currencyFormatter.format(holding.pnl),
+                        text = " ${formatCurrency(holding.pnl)}",
                         style = MaterialTheme.typography.bodyMedium,
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,

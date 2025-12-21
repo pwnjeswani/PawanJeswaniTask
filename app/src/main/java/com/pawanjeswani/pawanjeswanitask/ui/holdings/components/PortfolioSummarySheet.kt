@@ -35,8 +35,8 @@ import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 import com.pawanjeswani.pawanjeswanitask.ui.theme.LossRed
 import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
-import java.text.NumberFormat
-import java.util.Locale
+import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatCurrency
+import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatPercentage
 
 @Composable
 fun PortfolioSummarySheet(
@@ -44,7 +44,7 @@ fun PortfolioSummarySheet(
     modifier: Modifier = Modifier
 ) {
     var isExpanded by remember { mutableStateOf(false) }
-    val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) }
+    // val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) } // Optimization: Shared formatter used
 
     val totalPnlColor = if (summary.totalPnl >= 0) ProfitGreen else LossRed
     val todayPnlColor = if (summary.todayPnl >= 0) ProfitGreen else LossRed
@@ -87,7 +87,7 @@ fun PortfolioSummarySheet(
                         )
                     }
                     Text(
-                        text = currencyFormatter.format(summary.totalPnl),
+                        text = "${formatCurrency(summary.totalPnl)} (${formatPercentage(summary.totalPnlPercentage)}%)",
                         style = MaterialTheme.typography.titleMedium,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,
@@ -100,7 +100,7 @@ fun PortfolioSummarySheet(
                 // Current Value
                 SummaryRow(
                     label = stringResource(R.string.label_current_value),
-                    value = currencyFormatter.format(summary.currentValue)
+                    value = formatCurrency(summary.currentValue)
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -108,7 +108,7 @@ fun PortfolioSummarySheet(
                 // Total Investment
                 SummaryRow(
                     label = stringResource(R.string.label_total_investment),
-                    value = currencyFormatter.format(summary.totalInvestment)
+                    value = formatCurrency(summary.totalInvestment)
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -116,7 +116,7 @@ fun PortfolioSummarySheet(
                 // Today's Profit & Loss
                 SummaryRow(
                     label = stringResource(R.string.label_todays_profit_and_loss),
-                    value = currencyFormatter.format(summary.todayPnl),
+                    value = "${formatCurrency(summary.todayPnl)} (${formatPercentage(summary.todayPnlPercentage)}%)",
                     valueColor = todayPnlColor
                 )
 
@@ -149,7 +149,7 @@ fun PortfolioSummarySheet(
                         )
                     }
                     Text(
-                        text = currencyFormatter.format(summary.totalPnl),
+                        text = "${formatCurrency(summary.totalPnl)} (${formatPercentage(summary.totalPnlPercentage)}%)",
                         style = MaterialTheme.typography.titleMedium,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold,

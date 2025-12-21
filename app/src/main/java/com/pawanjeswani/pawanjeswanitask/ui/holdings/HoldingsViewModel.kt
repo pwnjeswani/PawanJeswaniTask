@@ -1,8 +1,6 @@
 package com.pawanjeswani.pawanjeswanitask.ui.holdings
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import androidx.lifecycle.viewModelScope
 import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.usecase.CalculatePortfolioSummaryUseCase
@@ -14,11 +12,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+import com.pawanjeswani.pawanjeswanitask.util.UiText
+
 @HiltViewModel
 class HoldingsViewModel @Inject constructor(
     private val getHoldingsUseCase: GetHoldingsUseCase,
-    private val calculatePortfolioSummaryUseCase: CalculatePortfolioSummaryUseCase,
-    @ApplicationContext private val context: Context
+    private val calculatePortfolioSummaryUseCase: CalculatePortfolioSummaryUseCase
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow<HoldingsUiState>(HoldingsUiState.Loading)
@@ -41,9 +40,12 @@ class HoldingsViewModel @Inject constructor(
                     )
                 },
                 onFailure = { throwable ->
-                    _uiState.value = HoldingsUiState.Error(
-                        message = throwable.message ?: context.getString(R.string.error_generic)
-                    )
+                    val errorText = when (throwable) {
+                        is java.net.SocketTimeoutException -> UiText.StringResource(R.string.error_request_timed_out)
+                        is java.net.UnknownHostException -> UiText.StringResource(R.string.error_network_connection)
+                        else -> UiText.StringResource(R.string.error_generic)
+                    }
+                    _uiState.value = HoldingsUiState.Error(message = errorText)
                 }
             )
         }

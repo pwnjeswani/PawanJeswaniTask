@@ -6,17 +6,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.PrimaryTabRow
 import androidx.compose.material3.Tab
-import androidx.compose.material3.TabRow
-import androidx.compose.material3.TabRowDefaults
-import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.ui.holdings.HoldingsScreen
 import kotlinx.coroutines.launch
 
@@ -33,17 +29,18 @@ fun PortfolioScreen(modifier: Modifier = Modifier) {
     val coroutineScope = rememberCoroutineScope()
     
     Column(modifier = modifier.fillMaxSize()) {
-        TabRow(
+        // Custom Top Bar
+        com.pawanjeswani.pawanjeswanitask.ui.portfolio.components.PortfolioTopBar(
+            onSortClick = { /* TODO: Implement sort callback */ },
+            onSearchClick = { /* TODO: Implement search callback */ },
+            onProfileClick = { /* TODO: Implement profile callback */ }
+        )
+
+        PrimaryTabRow(
             selectedTabIndex = pagerState.currentPage,
             modifier = Modifier.fillMaxWidth(),
             containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.primary,
-            indicator = { tabPositions ->
-                TabRowDefaults.PrimaryIndicator(
-                    modifier = Modifier.tabIndicatorOffset(tabPositions[pagerState.currentPage]),
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
+            contentColor = MaterialTheme.colorScheme.primary
         ) {
             tabs.forEachIndexed { index, tab ->
                 Tab(

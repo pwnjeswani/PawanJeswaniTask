@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.pawanjeswani.pawanjeswanitask.util.UiText
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
@@ -37,7 +38,7 @@ fun HoldingsScreen(
     viewModel: HoldingsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
-    
+
     HoldingsContent(
         uiState = uiState,
         onRetry = { viewModel.retry() },
@@ -46,7 +47,7 @@ fun HoldingsScreen(
 }
 
 @Composable
-private fun HoldingsContent(
+internal fun HoldingsContent(
     uiState: HoldingsUiState,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier
@@ -61,7 +62,9 @@ private fun HoldingsContent(
                         modifier = Modifier.padding(horizontal = 0.dp)
                     )
                 }
-                else -> { /* No bottom bar for loading/error states */ }
+
+                else -> { /* No bottom bar for loading/error states */
+                }
             }
         }
     ) { paddingValues ->
@@ -74,7 +77,7 @@ private fun HoldingsContent(
                 is HoldingsUiState.Loading -> {
                     LoadingContent()
                 }
-                
+
                 is HoldingsUiState.Success -> {
                     if (state.holdings.isEmpty()) {
                         EmptyContent()
@@ -84,7 +87,7 @@ private fun HoldingsContent(
                         )
                     }
                 }
-                
+
                 is HoldingsUiState.Error -> {
                     ErrorContent(
                         message = state.message,
@@ -142,7 +145,7 @@ private fun HoldingsList(
     ) {
         items(
             items = holdings,
-            key = { it.symbol }
+            key = { it.id }
         ) { holding ->
             HoldingItem(holding = holding)
         }
@@ -151,7 +154,7 @@ private fun HoldingsList(
 
 @Composable
 private fun ErrorContent(
-    message: String,
+    message: UiText,
     onRetry: () -> Unit
 ) {
     Box(
@@ -164,7 +167,7 @@ private fun ErrorContent(
             modifier = Modifier.padding(32.dp)
         ) {
             Text(
-                text = stringResource(R.string.msg_error_generic),
+                text = message.asString(),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.error
             )
@@ -234,7 +237,7 @@ private fun HoldingsScreenEmptyPreview() {
 private fun HoldingsScreenErrorPreview() {
     PawanJeswaniTaskTheme {
         HoldingsContent(
-            uiState = HoldingsUiState.Error("Network connection failed. Please check your internet connection."),
+            uiState = HoldingsUiState.Error(UiText.DynamicString("Network connection failed. Please check your internet connection.")),
             onRetry = {}
         )
     }

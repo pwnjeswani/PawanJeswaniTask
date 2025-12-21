@@ -27,4 +27,6 @@
     <string name="msg_error_generic">Oops! Something went wrong</string>
     <string name="action_retry">Retry</string>
     <string name="error_generic">An unexpected error occurred</string>
+    <string name="error_request_timed_out">Request Timed Out</string>
+    <string name="error_network_connection">Network connection failed. Please check your internet connection.</string>
 </resources>
