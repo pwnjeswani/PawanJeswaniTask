@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,12 +43,13 @@ import com.pawanjeswani.pawanjeswanitask.util.Formatters.formatPercentage
 @Composable
 fun PortfolioSummarySheet(
     summary: PortfolioSummary,
+    totalPnlColor: Color,
     modifier: Modifier = Modifier
 ) {
-    var isExpanded by remember { mutableStateOf(false) } // Tracks expansion state of the sheet
+    var isExpanded by rememberSaveable { mutableStateOf(false) } // Tracks expansion state of the sheet
     // val currencyFormatter = remember { NumberFormat.getCurrencyInstance(Locale.forLanguageTag("en-IN")) } // Optimization: Shared formatter used
 
-    val totalPnlColor = if (summary.totalPnl >= 0) ProfitGreen else LossRed
+//    val totalPnlColor = if (summary.totalPnl >= 0) ProfitGreen else LossRed
     val todayPnlColor = if (summary.todayPnl >= 0) ProfitGreen else LossRed
 
     Card(

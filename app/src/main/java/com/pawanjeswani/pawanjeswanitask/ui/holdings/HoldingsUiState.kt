@@ -1,5 +1,6 @@
 package com.pawanjeswani.pawanjeswanitask.ui.holdings
 
+import androidx.compose.ui.graphics.Color
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 
@@ -11,7 +12,8 @@ sealed class HoldingsUiState {
     
     data class Success(
         val holdings: List<Holding>,
-        val summary: PortfolioSummary
+        val summary: PortfolioSummary,
+        val pnLColor: Color
     ) : HoldingsUiState()
     
     data class Error(

@@ -4,6 +4,7 @@ import com.pawanjeswani.pawanjeswanitask.data.mapper.toHolding
 import com.pawanjeswani.pawanjeswanitask.data.remote.HoldingsApiService
 import com.pawanjeswani.pawanjeswanitask.domain.model.Holding
 import com.pawanjeswani.pawanjeswanitask.domain.repository.HoldingsRepository
+//import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

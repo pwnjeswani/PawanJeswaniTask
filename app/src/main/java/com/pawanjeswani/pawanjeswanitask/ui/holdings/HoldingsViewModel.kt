@@ -5,14 +5,15 @@ import androidx.lifecycle.viewModelScope
 import com.pawanjeswani.pawanjeswanitask.R
 import com.pawanjeswani.pawanjeswanitask.domain.usecase.CalculatePortfolioSummaryUseCase
 import com.pawanjeswani.pawanjeswanitask.domain.usecase.GetHoldingsUseCase
+import com.pawanjeswani.pawanjeswanitask.ui.theme.LossRed
+import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
+import com.pawanjeswani.pawanjeswanitask.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-import com.pawanjeswani.pawanjeswanitask.util.UiText
 
 // ViewModel managing holdings data and UI state for the holdings screen
 @HiltViewModel
@@ -39,7 +40,8 @@ class HoldingsViewModel @Inject constructor(
                     val summary = calculatePortfolioSummaryUseCase(holdings)
                     _uiState.value = HoldingsUiState.Success(
                         holdings = holdings,
-                        summary = summary
+                        summary = summary,
+                        pnLColor =  if(summary.totalPnl >= 0) ProfitGreen else LossRed
                     )
                 },
                 onFailure = { throwable ->

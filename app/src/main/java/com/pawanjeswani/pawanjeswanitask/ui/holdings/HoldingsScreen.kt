@@ -31,6 +31,7 @@ import com.pawanjeswani.pawanjeswanitask.domain.model.PortfolioSummary
 import com.pawanjeswani.pawanjeswanitask.ui.holdings.components.HoldingItem
 import com.pawanjeswani.pawanjeswanitask.ui.holdings.components.PortfolioSummarySheet
 import com.pawanjeswani.pawanjeswanitask.ui.theme.PawanJeswaniTaskTheme
+import com.pawanjeswani.pawanjeswanitask.ui.theme.ProfitGreen
 
 // Main holdings screen composable with ViewModel integration
 @Composable
@@ -61,7 +62,8 @@ internal fun HoldingsContent(
                 is HoldingsUiState.Success -> {
                     PortfolioSummarySheet(
                         summary = state.summary,
-                        modifier = Modifier.padding(horizontal = 0.dp)
+                        modifier = Modifier.padding(horizontal = 0.dp),
+                        totalPnlColor = uiState.pnLColor
                     )
                 }
 
@@ -217,7 +219,8 @@ private fun HoldingsScreenSuccessPreview() {
         HoldingsContent(
             uiState = HoldingsUiState.Success(
                 holdings = sampleHoldings,
-                summary = sampleSummary
+                summary = sampleSummary,
+                pnLColor = ProfitGreen
             ),
             onRetry = {}
         )
@@ -231,7 +234,8 @@ private fun HoldingsScreenEmptyPreview() {
         HoldingsContent(
             uiState = HoldingsUiState.Success(
                 holdings = emptyList(),
-                summary = PortfolioSummary(0.0, 0.0, 0.0, 0.0)
+                summary = PortfolioSummary(0.0, 0.0, 0.0, 0.0),
+                pnLColor = ProfitGreen
             ),
             onRetry = {}
         )
